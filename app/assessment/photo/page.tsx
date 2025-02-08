@@ -4,7 +4,15 @@ import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Camera, Upload, RefreshCw } from "lucide-react";
+import {
+  Camera,
+  Upload,
+  RefreshCw,
+  Sun,
+  Users,
+  Frame,
+  Move,
+} from "lucide-react";
 import { toast } from "sonner";
 
 // Custom Hook for Camera Setup
@@ -16,7 +24,7 @@ const useCamera = () => {
   const initializeCamera = async () => {
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
-        video: { aspectRatio: 1 }, // Force square aspect ratio
+        video: { aspectRatio: 1 },
       });
       setStream(mediaStream);
       if (videoRef.current) {
@@ -56,7 +64,6 @@ export default function PhotoCapturePage() {
     const context = canvasRef.current.getContext("2d");
     if (!context) return;
 
-    // Ensure square capture
     const size = Math.min(
       videoRef.current.videoWidth,
       videoRef.current.videoHeight
@@ -64,7 +71,6 @@ export default function PhotoCapturePage() {
     canvasRef.current.width = size;
     canvasRef.current.height = size;
 
-    // Calculate offset to center the capture
     const xOffset = (videoRef.current.videoWidth - size) / 2;
     const yOffset = (videoRef.current.videoHeight - size) / 2;
 
@@ -86,16 +92,46 @@ export default function PhotoCapturePage() {
 
   const handleSubmit = async () => {
     try {
-      // Implement your upload logic here
       toast.success("Photo submitted successfully!");
     } catch (error) {
       toast.error("Failed to submit photo. Please try again.");
     }
   };
 
+  const PhotoInstructions = () => (
+    <div className="space-y-4 text-gray-700">
+      <h2 className="font-semibold text-lg mb-6">Photo Tips</h2>
+      <div className="space-y-4">
+        {[
+          {
+            icon: Sun,
+            text: "Ensure good lighting on your face",
+          },
+          {
+            icon: Frame,
+            text: "Center yourself in the frame",
+          },
+          {
+            icon: Users,
+            text: "Make sure your face is clearly visible",
+          },
+          {
+            icon: Move,
+            text: "Stay still while taking the photo",
+          },
+        ].map((instruction, index) => (
+          <div key={index} className="flex items-center space-x-3">
+            <instruction.icon className="w-5 h-5 text-blue-500 flex-shrink-0" />
+            <p className="text-sm">{instruction.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#E6F3FF] via-white to-[#FFF3E0] p-2 sm:p-4 md:p-8">
-      <div className="w-full max-w-[500px] mx-auto">
+      <div className="w-full max-w-[1000px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -112,27 +148,33 @@ export default function PhotoCapturePage() {
               </div>
             ) : (
               <>
-                {!photo && (
-                  <div className="relative w-full aspect-square bg-black rounded-2xl overflow-hidden shadow-xl mx-auto">
-                    <video
-                      ref={videoRef}
-                      autoPlay
-                      playsInline
-                      className="w-full h-full object-cover"
-                    />
+                <div className="flex flex-col lg:flex-row gap-6">
+                  <div className="flex-1">
+                    {!photo ? (
+                      <div className="relative w-full aspect-square bg-black rounded-2xl overflow-hidden shadow-xl mx-auto">
+                        <video
+                          ref={videoRef}
+                          autoPlay
+                          playsInline
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative w-full aspect-square bg-black rounded-2xl overflow-hidden">
+                        <img
+                          src={photo}
+                          alt="Captured"
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                    )}
+                    <canvas ref={canvasRef} className="hidden" />
                   </div>
-                )}
-                <canvas ref={canvasRef} className="hidden" />
 
-                {photo && (
-                  <div className="relative w-full aspect-square bg-black rounded-2xl overflow-hidden mt-4 sm:mt-6">
-                    <img
-                      src={photo}
-                      alt="Captured"
-                      className="w-full h-full object-contain"
-                    />
+                  <div className="lg:w-64 xl:w-72">
+                    <PhotoInstructions />
                   </div>
-                )}
+                </div>
 
                 <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
                   {!photo ? (
