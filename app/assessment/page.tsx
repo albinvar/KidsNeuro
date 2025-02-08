@@ -83,31 +83,31 @@ export default function AssessmentPage() {
             <motion.div
               key={disorder.id}
               variants={item}
-              className="group"
+              className="group flex flex-col h-full"
             >
-              <Card className="relative h-full overflow-hidden backdrop-blur-sm bg-white/80 hover:bg-white/90 transition-all duration-500 border-border/50 hover:border-primary/20 hover:shadow-xl">
+              <Card className="relative flex flex-col flex-grow h-full overflow-hidden backdrop-blur-sm bg-white/80 hover:bg-white/90 transition-all duration-500 border-border/50 hover:border-primary/20 hover:shadow-xl p-8">
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent to-primary/5 group-hover:opacity-100 opacity-0 transition-opacity duration-500" />
-                <div className="p-8 relative">
+                <div className="relative flex flex-col flex-grow items-center text-center">
                   <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
                     {disorder.icon}
                   </div>
                   <h3 className="text-2xl font-semibold mb-3 text-primary group-hover:text-[#4F46E5] transition-colors">
                     {disorder.name}
                   </h3>
-                  <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+                  <p className="text-muted-foreground text-lg mb-6 leading-relaxed flex-grow">
                     {disorder.description}
                   </p>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-full group-hover:bg-[#E8F5E9] group-hover:border-[#E8F5E9] transition-all duration-300 py-6 text-lg"
-                  >
-                    <Link href={`/assessment/${disorder.id}`}>
-                      Start Assessment
-                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                  </Button>
                 </div>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full mt-auto group-hover:bg-[#E8F5E9] group-hover:border-[#E8F5E9] transition-all duration-300 py-6 text-lg"
+                >
+                  <Link href={`/assessment/${disorder.id}`}>
+                    Start Assessment
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
               </Card>
             </motion.div>
           ))}
