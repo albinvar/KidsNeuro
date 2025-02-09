@@ -221,6 +221,14 @@ export default function ProcessingSteps() {
               <p className="text-green-600 text-lg font-semibold">
                 Processing Complete! ✨
               </p>
+              <button
+                onClick={() =>
+                  (window.location.href = "/disorders/asd/results")
+                }
+                className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                View Results
+              </button>
             </motion.div>
           )}
         </AnimatePresence>

@@ -151,18 +151,15 @@ export default function QuizPage() {
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", duration: 0.5 }}
                 >
-                  <Trophy className="w-24 h-24 mx-auto text-yellow-500 mb-6 drop-shadow-lg" />
+                  <Trophy className="mx-auto h-20 w-20 text-yellow-500 mb-4" />
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <h2 className="text-3xl font-bold mb-4 text-gray-800">
-                    Congratulations!
-                  </h2>
                   <p className="text-xl text-gray-600 mb-6">
-                    Thank you for completing the questionnaire.
+                    Thanks for completing the questionnaire.
                   </p>
                   <div className="bg-blue-50 rounded-xl p-6 mb-8 shadow-inner">
                     <p className="text-gray-700 mb-4">
