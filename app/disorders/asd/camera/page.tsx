@@ -184,7 +184,7 @@ export default function AssessmentTestPage() {
   }, [videoState.url]);
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#E6F3FF] via-white to-[#FFF3E0] items-center justify-center p-4 sm:p-8">
-      <div className="container mx-auto px-4 mt-12 py-8">
+      <div className="container mx-auto px-2 mt-6 py-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -240,7 +240,7 @@ export default function AssessmentTestPage() {
               )}
             </div>
 
-            <Card className="bg-white/80 backdrop-blur-sm border-none p-8 rounded-3xl shadow-lg">
+            <Card className="bg-white/80 backdrop-blur-sm border-none p-6 rounded-3xl shadow-lg">
               <h1 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Video Assessment
               </h1>
