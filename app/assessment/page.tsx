@@ -86,7 +86,7 @@ export default function AssessmentPage() {
               className="group flex flex-col h-full"
             >
               <Card className="relative flex flex-col flex-grow h-full overflow-hidden backdrop-blur-sm bg-white/80 hover:bg-white/90 transition-all duration-500 border-border/50 hover:border-primary/20 hover:shadow-xl p-8">
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-primary/5 group-hover:opacity-100 opacity-0 transition-opacity duration-500" />
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-transparent to-primary/5 group-hover:opacity-100 opacity-0 transition-opacity duration-500" />
                 <div className="relative flex flex-col flex-grow items-center text-center">
                   <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
                     {disorder.icon}
