@@ -103,7 +103,7 @@ export default function AssessmentPage() {
                   variant="outline"
                   className="w-full mt-auto group-hover:bg-[#E8F5E9] group-hover:border-[#E8F5E9] transition-all duration-300 py-6 text-lg"
                 >
-                  <Link href={`/disorders/${disorder.id}`}>
+                  <Link href={`/disorders/${disorder.slug}`}>
                     Start Assessment
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Link>
