@@ -296,7 +296,9 @@ export default function AssessmentTestPage() {
                       {videoState.blob && (
                         <div className="space-y-4">
                           <Button
-                            onClick={handleSubmit}
+                            onClick={() =>
+                              (window.location.href = "/disorders/asd/quiz")
+                            }
                             className="w-full bg-blue-500 hover:bg-blue-600 text-white rounded-xl py-6 text-lg"
                           >
                             <Upload className="mr-2 h-6 w-6" />

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Mic, X, Upload, Volume2, Shield, RefreshCw } from "lucide-react";
+import Link from "next/link";
 
 // Types
 interface AudioState {
@@ -105,7 +106,7 @@ export default function AudioAssessmentPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#E6F3FF] via-white to-[#FFF3E0] items-center justify-center p-4 sm:p-8">
+    <main className="min-h-screen bg-gradient-to-b from-[#E6F3FF] via-white to-[#FFF3E0] items-center justify-center p-2  sm:p-8 flex items-center justify-center">
       <div className="container mx-auto px-4 py-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -114,7 +115,7 @@ export default function AudioAssessmentPage() {
           className="max-w-3xl mx-auto"
         >
           <Card className="bg-white/80 backdrop-blur-sm border-none p-8 rounded-3xl shadow-lg">
-            <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Audio Assessment
             </h1>
 
@@ -176,9 +177,12 @@ export default function AudioAssessmentPage() {
                     <Button
                       onClick={handleSubmit}
                       className="w-full bg-blue-500 hover:bg-blue-600 text-white rounded-xl py-6 text-lg"
+                      asChild
                     >
-                      <Upload className="mr-2 h-6 w-6" />
-                      Submit Recording
+                      <Link href="/disorders/asd/processing">
+                        <Upload className="mr-2 h-6 w-6" />
+                        Submit Recording
+                      </Link>
                     </Button>
                     <Button
                       onClick={startRecording}

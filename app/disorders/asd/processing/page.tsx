@@ -13,10 +13,8 @@ import {
   Cog,
 } from "lucide-react";
 
-// First, add these variant definitions at the top of your file, after the steps array:
 const iconAnimations = {
   1: {
-    // Video Upload
     animate: {
       scale: [1, 1.2, 1],
       transition: {
@@ -26,7 +24,6 @@ const iconAnimations = {
     },
   },
   2: {
-    // Security Check
     animate: {
       rotate: [0, 360],
       transition: {
@@ -37,7 +34,6 @@ const iconAnimations = {
     },
   },
   3: {
-    // AI Analysis
     animate: {
       y: [0, -5, 0],
       transition: {
@@ -47,7 +43,6 @@ const iconAnimations = {
     },
   },
   4: {
-    // Data Processing
     animate: {
       rotate: [0, 360],
       transition: {
@@ -58,7 +53,6 @@ const iconAnimations = {
     },
   },
   5: {
-    // Results Ready
     animate: {
       scale: [1, 1.1, 1],
       transition: {
@@ -69,7 +63,6 @@ const iconAnimations = {
   },
 };
 
-// Then modify the steps array to wrap each icon in motion.div:
 const steps = [
   {
     id: 1,
@@ -149,6 +142,16 @@ export default function ProcessingSteps() {
     <main className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4 sm:p-8">
       <div className="w-full max-w-2xl">
         <div className="text-center mb-12">
+          <div className="flex justify-center space-x-4 mb-8">
+            <motion.div
+              key={steps[currentStep].id}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+            >
+              {steps[currentStep].icon}
+            </motion.div>
+          </div>
           <p className="text-gray-600">
             Advanced AI analysis in progress. Please wait...
           </p>
@@ -172,13 +175,15 @@ export default function ProcessingSteps() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.5 }}
-            className={`bg-white rounded-2xl px-4 md:px-6 py-6 shadow-lg border-2 border-${steps[currentStep].color}-500`}
+            className="px-4 md:px-6 py-6 flex justify-center"
           >
             <div className="flex items-center space-x-4">
               <div
-                className={`p-3 rounded-xl bg-${steps[currentStep].color}-50`}
+                className={`w-12 h-12 rounded-full flex items-center justify-center bg-${steps[currentStep].color}-100`}
               >
-                {steps[currentStep].icon}
+                <ArrowRight
+                  className={`w-8 h-8 text-${steps[currentStep].color}-600`}
+                />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-800 mb-1">

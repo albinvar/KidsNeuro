@@ -4,36 +4,70 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { toast } from "sonner";
-import { CheckCircle, XCircle, RefreshCw, Trophy } from "lucide-react";
+import { ArrowRight, RefreshCw, Trophy } from "lucide-react";
 
 // Types
 interface Question {
   id: number;
   text: string;
   options: string[];
-  correctAnswer: number;
 }
 
 const sampleQuestions: Question[] = [
   {
     id: 1,
-    text: "What part of the brain is responsible for balance?",
-    options: ["Cerebrum", "Cerebellum", "Medulla", "Thalamus"],
-    correctAnswer: 1,
+    text: "When someone is showing emotion through their facial expression, I can usually understand how they are feeling.",
+    options: [
+      "Always easy for me",
+      "Sometimes I can tell",
+      "Often difficult for me",
+      "Very challenging to understand",
+    ],
   },
   {
     id: 2,
-    text: "Which neurotransmitter is often associated with pleasure and reward?",
-    options: ["Serotonin", "Dopamine", "GABA", "Acetylcholine"],
-    correctAnswer: 1,
+    text: "In a group conversation, I find it:",
+    options: [
+      "Easy to take turns speaking",
+      "Sometimes challenging to know when to speak",
+      "Difficult to follow multiple people talking",
+      "Prefer one-on-one conversations",
+    ],
   },
-  // Add more questions as needed
+  {
+    id: 3,
+    text: "When someone uses figures of speech or idioms, I usually:",
+    options: [
+      "Understand the meaning easily",
+      "Need some time to process the meaning",
+      "Take them literally at first",
+      "Find them very confusing",
+    ],
+  },
+  {
+    id: 4,
+    text: "In social situations, making eye contact is:",
+    options: [
+      "Natural and comfortable",
+      "Sometimes uncomfortable",
+      "Often challenging",
+      "Very difficult or uncomfortable",
+    ],
+  },
+  {
+    id: 5,
+    text: "When plans change unexpectedly, I typically:",
+    options: [
+      "Adapt easily",
+      "Feel slightly anxious but manage",
+      "Need time to adjust",
+      "Feel very upset or stressed",
+    ],
+  },
 ];
 
 export default function QuizPage() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState<number[]>([]);
 
@@ -42,16 +76,9 @@ export default function QuizPage() {
     newSelectedAnswers[currentQuestion] = answerIndex;
     setSelectedAnswers(newSelectedAnswers);
 
-    if (answerIndex === sampleQuestions[currentQuestion].correctAnswer) {
-      setScore(score + 1);
-      toast.success("Correct answer!");
-    } else {
-      toast.error("Incorrect answer!");
-    }
-
     // Move to next question or show results
     if (currentQuestion < sampleQuestions.length - 1) {
-      setTimeout(() => setCurrentQuestion(currentQuestion + 1), 1000);
+      setTimeout(() => setCurrentQuestion(currentQuestion + 1), 500);
     } else {
       setShowResults(true);
     }
@@ -59,13 +86,12 @@ export default function QuizPage() {
 
   const restartQuiz = () => {
     setCurrentQuestion(0);
-    setScore(0);
     setShowResults(false);
     setSelectedAnswers([]);
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#E6F3FF] via-white to-[#FFF3E0] p-4 sm:p-8">
+    <main className="min-h-screen bg-gradient-to-b from-[#E6F3FF] via-white to-[#FFF3E0] p-2 sm:p-8 flex items-center justify-center">
       <div className="container mx-auto px-4 py-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -73,7 +99,7 @@ export default function QuizPage() {
           transition={{ duration: 0.8 }}
           className="max-w-2xl mx-auto"
         >
-          <Card className="bg-white/80 backdrop-blur-sm border-none p-8 rounded-3xl shadow-lg">
+          <Card className="bg-white/80 backdrop-blur-sm border-none p-4 rounded-3xl shadow-lg">
             {!showResults ? (
               <>
                 <div className="mb-6">
@@ -81,9 +107,6 @@ export default function QuizPage() {
                     <h1 className="text-2xl font-bold text-gray-800">
                       Question {currentQuestion + 1}/{sampleQuestions.length}
                     </h1>
-                    <span className="text-lg font-semibold text-blue-600">
-                      Score: {score}
-                    </span>
                   </div>
                   <div className="w-full bg-gray-200 h-2 rounded-full mt-4">
                     <div
@@ -107,14 +130,14 @@ export default function QuizPage() {
                         <Button
                           key={index}
                           onClick={() => handleAnswerSelect(index)}
-                          className={`w-full justify-start text-left p-4 ${
+                          className={`w-full justify-start text-left p-4 whitespace-normal h-auto ${
                             selectedAnswers[currentQuestion] === index
                               ? "bg-blue-100 hover:bg-blue-200"
                               : "hover:bg-gray-100"
                           }`}
                           variant="outline"
                         >
-                          {option}
+                          <span className="line-clamp-2">{option}</span>
                         </Button>
                       )
                     )}
@@ -122,21 +145,61 @@ export default function QuizPage() {
                 </div>
               </>
             ) : (
-              <div className="text-center">
-                <Trophy className="w-16 h-16 mx-auto text-yellow-500 mb-4" />
-                <h2 className="text-2xl font-bold mb-4">Quiz Complete!</h2>
-                <p className="text-xl mb-6">
-                  Your score: {score} out of {sampleQuestions.length}
-                </p>
-                <div className="flex justify-center">
+              <div className="text-center p-6">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", duration: 0.5 }}
+                >
+                  <Trophy className="w-24 h-24 mx-auto text-yellow-500 mb-6 drop-shadow-lg" />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <h2 className="text-3xl font-bold mb-4 text-gray-800">
+                    Congratulations!
+                  </h2>
+                  <p className="text-xl text-gray-600 mb-6">
+                    Thank you for completing the questionnaire.
+                  </p>
+                  <div className="bg-blue-50 rounded-xl p-6 mb-8 shadow-inner">
+                    <p className="text-gray-700 mb-4">
+                      You answered {selectedAnswers.length} out of{" "}
+                      {sampleQuestions.length} questions
+                    </p>
+                    <div className="h-2 w-full bg-gray-200 rounded-full mb-6">
+                      <div
+                        className="h-2 bg-blue-500 rounded-full transition-all duration-500"
+                        style={{
+                          width: `${
+                            (selectedAnswers.length / sampleQuestions.length) *
+                            100
+                          }%`,
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex justify-center">
+                    <Button
+                      onClick={restartQuiz}
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded-xl transition-all duration-200 transform hover:scale-105"
+                    >
+                      <RefreshCw className="mr-3 h-5 w-5 animate-spin-slow" />
+                      Take Quiz Again
+                    </Button>
+                  </div>
                   <Button
-                    onClick={restartQuiz}
-                    className="bg-blue-500 hover:bg-blue-600 text-white"
+                    onClick={() =>
+                      (window.location.href = "/disorders/asd/audio")
+                    }
+                    className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 rounded-xl transition-all duration-200 transform hover:scale-105 mt-4"
                   >
-                    <RefreshCw className="mr-2 h-4 w-4" />
-                    Try Again
+                    <ArrowRight className="mr-3 h-5 w-5" />
+                    Next Assessment
                   </Button>
-                </div>
+                </motion.div>
               </div>
             )}
           </Card>
