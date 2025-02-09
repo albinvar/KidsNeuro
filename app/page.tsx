@@ -2,34 +2,47 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Heart, Brain, Users, ChevronDown, Star, Clock, Calendar, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  Heart,
+  Brain,
+  Users,
+  ChevronDown,
+  Star,
+  Clock,
+  Calendar,
+  Phone,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function Home() {
   const scrollToFeatures = () => {
-    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const testimonials = [
     {
       name: "Sarah Johnson",
       role: "Parent",
-      content: "The care and attention our child received was exceptional. The team's expertise made all the difference in our journey.",
+      content:
+        "The care and attention our child received was exceptional. The team's expertise made all the difference in our journey.",
       rating: 5,
     },
     {
       name: "Michael Chen",
       role: "Parent",
-      content: "Professional, compassionate, and thorough. They provided clear guidance and support throughout the process.",
+      content:
+        "Professional, compassionate, and thorough. They provided clear guidance and support throughout the process.",
       rating: 5,
     },
     {
       name: "Emily Rodriguez",
       role: "Parent",
-      content: "We're grateful for the personalized care plan that helped our child make remarkable progress.",
+      content:
+        "We're grateful for the personalized care plan that helped our child make remarkable progress.",
       rating: 5,
-    }
+    },
   ];
 
   const stats = [
@@ -54,8 +67,8 @@ export default function Home() {
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#E6F3FF]/80 to-white/80 backdrop-blur-sm" />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -117,7 +130,9 @@ export default function Home() {
           >
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <h3 className="text-4xl font-bold text-primary mb-2">{stat.value}</h3>
+                <h3 className="text-4xl font-bold text-primary mb-2">
+                  {stat.value}
+                </h3>
                 <p className="text-muted-foreground">{stat.label}</p>
               </div>
             ))}
@@ -140,7 +155,8 @@ export default function Home() {
               Why Choose KidsNeuro?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We combine expertise with compassion to provide the best care for your child's development.
+              We combine expertise with compassion to provide the best care for
+              your child's development.
             </p>
           </motion.div>
 
@@ -149,21 +165,24 @@ export default function Home() {
               {
                 icon: Heart,
                 title: "Compassionate Care",
-                description: "Our approach focuses on understanding and supporting each child's unique needs with warmth and empathy.",
+                description:
+                  "Our approach focuses on understanding and supporting each child's unique needs with warmth and empathy.",
                 color: "text-chart-1",
                 delay: 0.2,
               },
               {
                 icon: Brain,
                 title: "Expert Diagnosis",
-                description: "State-of-the-art assessment tools and experienced specialists ensure accurate diagnosis and treatment.",
+                description:
+                  "State-of-the-art assessment tools and experienced specialists ensure accurate diagnosis and treatment.",
                 color: "text-chart-2",
                 delay: 0.4,
               },
               {
                 icon: Users,
                 title: "Family Support",
-                description: "We provide comprehensive support and guidance for families throughout their journey.",
+                description:
+                  "We provide comprehensive support and guidance for families throughout their journey.",
                 color: "text-chart-3",
                 delay: 0.6,
               },
@@ -176,7 +195,9 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <Card className="group h-full p-8 hover:shadow-xl transition-all duration-500 bg-white/80 backdrop-blur-sm border-border/50 hover:border-primary/20">
-                  <feature.icon className={`h-12 w-12 ${feature.color} mb-6 transform group-hover:scale-110 transition-transform duration-300`} />
+                  <feature.icon
+                    className={`h-12 w-12 ${feature.color} mb-6 transform group-hover:scale-110 transition-transform duration-300`}
+                  />
                   <h3 className="text-2xl font-semibold mb-4 text-primary">
                     {feature.title}
                   </h3>
@@ -204,7 +225,8 @@ export default function Home() {
               What Parents Say
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Read about the experiences of families we've helped on their journey.
+              Read about the experiences of families we've helped on their
+              journey.
             </p>
           </motion.div>
 
@@ -220,13 +242,22 @@ export default function Home() {
                 <Card className="h-full p-8 bg-white/80 backdrop-blur-sm">
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                      <Star
+                        key={i}
+                        className="h-5 w-5 text-yellow-400 fill-current"
+                      />
                     ))}
                   </div>
-                  <p className="text-muted-foreground mb-6 italic">"{testimonial.content}"</p>
+                  <p className="text-muted-foreground mb-6 italic">
+                    "{testimonial.content}"
+                  </p>
                   <div>
-                    <p className="font-semibold text-primary">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    <p className="font-semibold text-primary">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {testimonial.role}
+                    </p>
                   </div>
                 </Card>
               </motion.div>
@@ -249,7 +280,9 @@ export default function Home() {
                 Ready to Take the First Step?
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Start with our comprehensive assessment to understand your child's needs better. Our team of experts is here to guide you every step of the way.
+                Start with our comprehensive assessment to understand your
+                child's needs better. Our team of experts is here to guide you
+                every step of the way.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
@@ -266,7 +299,7 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -274,7 +307,9 @@ export default function Home() {
               viewport={{ once: true }}
               className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg"
             >
-              <h3 className="text-2xl font-semibold mb-6">Schedule a Consultation</h3>
+              <h3 className="text-2xl font-semibold mb-6">
+                Schedule a Consultation
+              </h3>
               <div className="space-y-4">
                 <Button
                   asChild

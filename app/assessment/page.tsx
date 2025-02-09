@@ -20,14 +20,14 @@ export default function AssessmentPage() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
+    show: { opacity: 1, y: 0 },
   };
 
   return (
@@ -44,10 +44,10 @@ export default function AssessmentPage() {
             Condition Assessment
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-            Explore our comprehensive assessment tools for various conditions. 
+            Explore our comprehensive assessment tools for various conditions.
             Select a condition to begin the evaluation process.
           </p>
-          
+
           {/* Search Bar */}
           <div className="relative max-w-lg mx-auto mb-16">
             <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#E6F3FF] to-[#FFF3E0] blur-xl opacity-50 rounded-full" />
@@ -103,7 +103,7 @@ export default function AssessmentPage() {
                   variant="outline"
                   className="w-full mt-auto group-hover:bg-[#E8F5E9] group-hover:border-[#E8F5E9] transition-all duration-300 py-6 text-lg"
                 >
-                  <Link href={`/assessment/${disorder.id}`}>
+                  <Link href={`/disorders/${disorder.id}`}>
                     Start Assessment
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Link>
