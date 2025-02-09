@@ -95,14 +95,14 @@ export default function Home() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button
+              {/* <Button
                 asChild
                 size="lg"
                 variant="outline"
                 className="text-lg px-8 py-6 hover:bg-secondary/50 transform hover:scale-105 transition-all duration-300"
               >
                 <Link href="/team">Meet Our Team</Link>
-              </Button>
+              </Button> */}
             </div>
           </motion.div>
         </div>

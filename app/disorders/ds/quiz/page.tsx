@@ -184,7 +184,7 @@ export default function QuizPage() {
                   </div>
                   <Button
                     onClick={() =>
-                      (window.location.href = "/disorders/asd/audio")
+                      (window.location.href = "/disorders/ds/game")
                     }
                     className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 rounded-xl transition-all duration-200 transform hover:scale-105 mt-4"
                   >

@@ -47,7 +47,7 @@ export default function DSPage() {
               in the identification of Down Syndrome characteristics using
               advanced computer vision and interactive assessments.
             </p>
-            <Link href="/disorders/ds/camera">
+            <Link href="/disorders/ds/photo">
               <Button size="lg" className="text-lg px-8 py-6">
                 Begin Screening
                 <ArrowRight className="ml-2 h-5 w-5" />
