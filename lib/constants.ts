@@ -11,6 +11,7 @@ export const disorders = [
     name: "Down Syndrome",
     icon: "❤️",
     description: "Genetic disorder affecting development.",
+    slug: "ds",
   },
   {
     id: 3,
